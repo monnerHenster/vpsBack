@@ -1,0 +1,7 @@
+echo ====start to list video file
+ls /home/Downloads/mp4 -1 -t | grep .mp4 > videoListPrivate.txt
+echo ====start to update videoListPrivate.json
+./autoMakePlayListPrivate.py
+echo ====update finished
+rm videoListPrivate.txt
+echo ====done

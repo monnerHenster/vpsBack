@@ -1,0 +1,8 @@
+<update>
+	<web date="05-30" encoding="gbk" name="太上章" regX="更新时间..i.(.*)./i." url="http://m.uuxs.net/book/0/615/index.html" />
+	<web date="2017-06-23" encoding="utf-8" name="一拳超人" regX="(2017-..-..)./span.]" url="http://www.57mh.com/10/" />
+	<web date="2017-08-30" encoding="utf-8" name="东京食尸鬼" regX="(2017-..-..)./span.]" url="http://www.57mh.com/7366/" />
+	<web date="2017-08-31" encoding="utf-8" name="海贼王" regX="(2017-..-..)./span.]" url="http://www.57mh.com/282/" />
+	<web date="2017-09-01" encoding="utf-8" name="我的英雄学院" regX="(2017-..-..)./span.]" url="http://www.57mh.com/5079/" />
+	<web date="2017.09.14" encoding="utf-8" name="守墓笔记" regX="(2017\...\...)" url="http://ac.qq.com/Comic/comicInfo/id/547939?auth=1" />
+</update>

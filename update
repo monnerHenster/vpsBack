@@ -1,0 +1,11 @@
+echo ====start to list video file
+ls /home/webVideo -1 -t | grep .mp4 > /home/webVideo/videoList.txt
+ls /home/webVideo | grep .flv >> /home/webVideo/videoList.txt
+echo ====start to update videoList.json
+./autoMakePlayListVer1.03.py
+echo ====update finished
+echo ====sending email
+/home/mailPush/mailPushFilm.py
+echo ====send email
+rm /home/webVideo/videoList.txt
+echo ====done
