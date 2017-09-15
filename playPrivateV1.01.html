@@ -2,17 +2,19 @@
 <html>
 <head>
 	<title></title>
-	<script src="https://content.jwplatform.com/libraries/qsqaTxl5.js"></script>
+	<script src="/jwplayer/jwplayer.js"></script>
 	<script>jwplayer.key="UxTKBsbLCBAkIoDoJ37nhiT8s0RALvi9dgwPqQ==";</script>
 </head>
 <body>
-	<div id = "myelement"></div>
+	<div id = "myelement" align="center">Loading Player</div>
 	<script type="text/javascript">
 		var playerInstance = jwplayer("myelement");
 		playerInstance.setup({
-			playlist : "http://pao.iioo.pub/videoList.json",
-			
+			playlist : "http://tk4.iioo.pub/videoListPrivate.json",
+			"width" : "100%" ,
+			"aspectratio" : "16:9"
 		});
+
 	</script>
 </body>
 </html>
