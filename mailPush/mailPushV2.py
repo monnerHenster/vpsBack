@@ -2,6 +2,7 @@
 # coding:utf-8
 # encoding: utf-8
 
+import json
 import re
 import os
 import requests
@@ -27,12 +28,8 @@ def sendMailText(title, content, sender, receiver, serverip, serverport, usernam
 if __name__ == "__main__":
     
     config = {
-    "from": "monnerhenster@gmail.com",            # 发件人邮箱
-    "to": "82627306@qq.com",             # 收件人邮箱
     "serverip": "smtp.gmail.com",             # 发件服务器IP
     "serverport":"465",                      # 发件服务器Port
-    "username": "monnerhenster@gmail.com",        # 发件人用户名
-    "pwd": "405289055"                 # 发件人密码
     }
     
     title = "太上章更新了"
@@ -81,13 +78,17 @@ for one in updateList.iter('web'):
         print (ntime + "：" + name + "没有更新")
     else :
         print (ntime + "：" + name + "更新了")
-        one.set("date",renewDate.group(1))
         title = name +"：更新了"
         body = url
         try:
-            sendMailText(title, body, config['from'], config['to'], config['serverip'], config['serverport'], config['username'], config['pwd'])
+            mailSetRes = open("/home/mailPush/mailSetp.json")
+            mailSet = json.load(mailSetRes)
+            for p in mailSet['reciever']:
+                sendMailText(title, body, mailSet['account'], p, config['serverip'], config['serverport'], mailSet['account'], mailSet['passwd'])
+            mailSetRes.close()
         except:
             print (ntime + "：邮件发送失败")
         else:
             print (ntime + "：邮件发送成功")   
+            one.set("date",renewDate.group(1))
 updateList.write('/home/mailPush/updateList.xml',encoding='utf-8')

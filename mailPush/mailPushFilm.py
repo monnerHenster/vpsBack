@@ -2,6 +2,7 @@
 # coding:utf-8
 # encoding: utf-8
 
+import json
 import re
 import os
 import requests
@@ -27,18 +28,11 @@ def sendMailText(title, content, sender, receiver, serverip, serverport, usernam
 if __name__ == "__main__":
     
     config = {
-    "from": "monnerhenster@gmail.com",            # 发件人邮箱
-    "to1": "incubator_g@outlook.com",             # 收件人邮箱
-    "to2": "598059072@qq.com",             # 收件人邮箱
-    "to3": "82627306@qq.com",             # 收件人邮箱
     "serverip": "smtp.gmail.com",             # 发件服务器IP
     "serverport":"465",                      # 发件服务器Port
-    "username": "monnerhenster@gmail.com",        # 发件人用户名
-    "pwd": "405289055"                 # 发件人密码
     }
     
     title = "视频更新"
-    body = "http://m.uuxs.net/book/0/615/index.html"
 
 videoList = open("/home/webVideo/videoList.txt","r")
 
@@ -46,8 +40,12 @@ videoList2json = videoList.read()
 
 # print (type(videoList2json))
 
+mailSetRes = open("/home/mailPush/mailSet.json")
+mailSet = json.load(mailSetRes)
+
 print (videoList2json)
 
-sendMailText(title, videoList2json, config['from'], config['to1'], config['serverip'], config['serverport'], config['username'], config['pwd'])
-sendMailText(title, videoList2json, config['from'], config['to2'], config['serverip'], config['serverport'], config['username'], config['pwd'])
-sendMailText(title, videoList2json, config['from'], config['to3'], config['serverip'], config['serverport'], config['username'], config['pwd'])
+for p in mailSet['reciever']:
+    sendMailText(title, videoList2json, mailSet['account'], p, config['serverip'], config['serverport'], mailSet['account'], mailSet['passwd'])
+
+mailSetRes.close()

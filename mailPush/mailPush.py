@@ -32,12 +32,8 @@ def sendMailText(title, content, sender, receiver, serverip, serverport, usernam
 if __name__ == "__main__":
     
     config = {
-    "from": "monnerhenster@gmail.com",            # 发件人邮箱
-    "to": "82627306@qq.com",             # 收件人邮箱
     "serverip": "smtp.gmail.com",             # 发件服务器IP
     "serverport":"465",                      # 发件服务器Port
-    "username": "monnerhenster@gmail.com",        # 发件人用户名
-    "pwd": "405289055"                 # 发件人密码
     }
     
     title = "太上章更新了"
@@ -62,6 +58,16 @@ renewDate =  re.search(regX,response.text)
 # print (oldDate)
 
 ntime=time.strftime('%Y-%m-%d %H:%M:%S',time.localtime(time.time()))
+
+mailSetRes = open("/home/mailPush/mailSet.json")
+mailSet = json.load(mailSetRes)
+
+print (videoList2json)
+
+for p in mailSet['reciever']:
+    sendMailText(title, videoList2json, mailSet['account'], p, config['serverip'], config['serverport'], mailSet['account'], mailSet['passwd'])
+
+mailSetRes.close()
 
 if renewDate.group(1) == oldDate :
     print (ntime + "：没有更新")
