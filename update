@@ -1,3 +1,5 @@
+echo ====moving films
+find /home/Downloads/ -name "*.mp4" -exec mv {} /home/webVideo \; 
 echo ====start to list video file
 ls /home/webVideo -1 -t | grep .mp4 > /home/webVideo/videoList.txt
 ls /home/webVideo | grep .flv >> /home/webVideo/videoList.txt
